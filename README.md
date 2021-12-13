@@ -17,7 +17,7 @@ hostvars:
 - pods: list of pods that should run on target host
 - containers: list of containers that should run on target host
 
-e.g. these can be the hostvars for podman01
+e.g. these can be the hostvars for *podman01*
 
     pods:
     - testpod01
@@ -31,13 +31,13 @@ e.g. these can be the hostvars for podman01
 Dependencies
 ------------
 
-role_nrpe to install/configure NRPE
+*role_nrpe* to install/configure NRPE
 
 Example Playbook
 ----------------
 
-the 2 vars containers and pods are optional and can be defined as host_vars.
-Note that the role is only useful as at least one of these vars is defined.
+the 2 vars containers and pods are optional and can be defined as host_vars.  
+Note that the role is only useful as at least one of these vars is defined.  
 
     - hosts: podman01
       roles:
@@ -59,5 +59,5 @@ BSD
 Author Information
 ------------------
 
-ARK-ICT
-Andre Rikkert de Koe - ICT
+    ARK-ICT
+    Andre Rikkert de Koe - ICT
