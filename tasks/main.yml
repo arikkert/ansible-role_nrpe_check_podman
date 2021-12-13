@@ -1,0 +1,42 @@
+---
+# tasks file for role_nrpe_check_podman
+
+- name: ensure check_podman is installed
+  copy:
+    src: "{{ item }}"
+    dest: /usr/lib64/nagios/plugins/
+    mode: '0755'
+  loop:
+    - check_podman
+- name: show containers that should run on target host
+  debug:
+    msg: host {{ inventory_hostname }} has containers {{ containers }}
+  when: containers is defined
+- name: show pods that should run on target host
+  debug:
+    msg: host {{ inventory_hostname }} has pods {{ pods }}
+  when: pods is defined
+- name: create cfg file from template
+  template:
+    src: templates/check_podman.cfg.j2
+    dest: /etc/nrpe.d/check_podman.{{ inventory_hostname_short }}.cfg
+    owner: root
+    group: root
+    mode: 0644
+  notify: nrpe reload
+
+- name: ensure sudo rules are in place
+  copy:
+    src: "{{ item }}"
+    dest: /etc/sudoers.d/
+    mode: '0400'
+    validate: visudo -cf %s
+  loop:
+    - 10_nrpe
+- name: ensure selinux policy is applied - part 01
+  seboolean:
+    name: nagios_run_sudo
+    state: true
+    persistent: true
+
+...

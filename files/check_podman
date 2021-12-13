@@ -1,0 +1,99 @@
+#!/usr/bin/env python3
+''' https://nagios-plugins.org/doc/guidelines.html '''
+
+# ARK-ICT
+# Andre Rikkert de Koe - ICT
+
+import subprocess
+import argparse
+import sys
+import os
+
+OK = {
+  "value": 0,
+  "name": "OK",
+  "message": "yay, all containers/pods are running"
+}
+
+WARNING = {
+  "value": 1,
+  "name": "WARNING",
+  "message": "some containers/pods ain't running"
+}
+
+CRITICAL = {
+  "value": 2,
+  "name": "CRITICAL",
+  "message": "some containers/pods ain't running"
+}
+
+UNKNOWN = {
+  "value": 3,
+  "name": "UNKNOWN",
+  "message": "wtf, some unknown errors"
+}
+
+PROGNAME = 'check_podman'
+
+#
+# Functions
+#
+
+def get_items(cmd):
+    '''comment to shutup pylint'''
+    items = []
+    with subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT) as ppp:
+        for line in ppp.stdout.readlines():
+            line = line.rstrip()
+            line = line.decode('utf-8')
+            items.append(line)
+    return items
+
+def get_containers():
+    '''comment to shutup pylint'''
+    return get_items ('sudo podman ps --sort names --format="{{.Names}}"')
+
+def get_pods():
+    '''comment to shutup pylint'''
+    return get_items ('sudo podman pod ps --format="{{.Name}}"')
+
+#
+# Main
+#
+
+parser = argparse.ArgumentParser(prog=PROGNAME)
+parser.add_argument('--containers', nargs="*", help="list of containers to check if running")
+parser.add_argument('--pods', nargs="*", help="list of pods to check if running")
+parser.add_argument('--verbose', help="show result of each checked pod/cont", action="store_true")
+args = parser.parse_args()
+
+status = OK
+output = ""
+
+uid = os.getuid()
+if uid != 0:
+    status = UNKNOWN
+    UNKNOWN['message'] = "Script runs under uid : " + str(uid) + ", should be 0"
+
+if args.containers:
+    for arg in args.containers:
+        if arg in get_containers():
+            output = output + "container " + arg + " : OK\n"
+        else:
+            output = output + "container " + arg + " : NOK\n"
+            status = CRITICAL
+
+if args.pods:
+    for arg in args.pods:
+        if arg in get_pods():
+            output = output + "pod " + arg + " : OK\n"
+        else:
+            output = output + "pod " + arg + " : NOK\n"
+            status = CRITICAL
+
+print (status["name"] + ' - ' + status["message"])
+if args.verbose:
+    print (output, end="")
+
+
+sys.exit(status["value"])

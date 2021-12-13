@@ -1,0 +1,2 @@
+# File managed by Ansible
+command[check_podman_pods_and_containers]=/usr/bin/sudo /usr/lib64/nagios/plugins/check_podman {%if containers is defined %}--containers{% for container in containers %} {{ container }}{% endfor %}{% endif %}{%if pods is defined %} --pods{% for pod in pods %} {{ pod }}{% endfor %}{% endif %} --verbose
