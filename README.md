@@ -13,18 +13,20 @@ Role Variables
 --------------
 
 hostvars:
-pods: list of pods that should run on target host
-containers: list of containers that should run on target host
+
+- pods: list of pods that should run on target host
+- containers: list of containers that should run on target host
 
 e.g. these can be the hostvars for podman01
 
-pods:
-- testpod01
-- testpod02
-containers:
-- hello_world
-- pihole
-- guacamole
+    pods:
+    - testpod01
+    - testpod02
+
+    containers:
+    - hello_world
+    - pihole
+    - guacamole
 
 Dependencies
 ------------
