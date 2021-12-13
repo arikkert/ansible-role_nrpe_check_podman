@@ -1,6 +1,7 @@
 galaxy_info:
+  role_name: nrpe_check_podman
   author: Andre Rikkert de Koe
-  description: nrpe op linux hosts
+  description: nrpe check_podman on linux hosts
   company: ARK-ICT
 
   # If the issue tracker for your role is not on github, uncomment the
@@ -39,10 +40,10 @@ galaxy_info:
   #   - 7
   #   - 99.99
   platforms:
-    - name:
-        - CentOS
-        - RHEL
-        - Fedora
+    - name: EL
+      versions:
+        - 8
+        - 9
 
   galaxy_tags: []
     # List tags for your role here, one per line. A tag is a keyword that describes
