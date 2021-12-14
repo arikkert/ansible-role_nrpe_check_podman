@@ -18,7 +18,7 @@
   when: pods is defined
 - name: ensure check_podman.cfg is installed
   template:
-    src: templates/check_podman.cfg.j2
+    src: check_podman.cfg.j2
     dest: /etc/nrpe.d/check_podman.cfg
     owner: root
     group: root
