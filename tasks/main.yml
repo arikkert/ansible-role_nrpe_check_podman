@@ -16,10 +16,10 @@
   debug:
     msg: host {{ inventory_hostname }} has pods {{ pods }}
   when: pods is defined
-- name: create cfg file from template
+- name: ensure check_podman.cfg is installed
   template:
     src: templates/check_podman.cfg.j2
-    dest: /etc/nrpe.d/check_podman.{{ inventory_hostname_short }}.cfg
+    dest: /etc/nrpe.d/check_podman.cfg
     owner: root
     group: root
     mode: 0644
