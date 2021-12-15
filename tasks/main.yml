@@ -18,13 +18,14 @@
   when: pods is defined
 - name: ensure check_podman.cfg is installed
   template:
-    src: check_podman.cfg.j2
+    src: "{{ item }}.j2"
     dest: /etc/nrpe.d/check_podman.cfg
     owner: root
     group: root
     mode: 0644
+  loop:
+    - check_podman.cfg
   notify: nrpe reload
-
 - name: ensure sudo rules are in place
   copy:
     src: "{{ item }}"

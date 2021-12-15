@@ -1,4 +1,6 @@
+---
 galaxy_info:
+  my_galaxy_namespace: arikkert
   role_name: nrpe_check_podman
   author: Andre Rikkert de Koe
   description: nrpe check_podman on linux hosts
