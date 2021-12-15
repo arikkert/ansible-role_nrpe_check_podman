@@ -49,7 +49,7 @@ Note that the role is only useful as at least one of these vars is defined.
 Note
 -------
 
-This role configures user nrpe to run check_podman with elevated priveges
+This role configures user *nrpe* to run *check_podman* with elevated privileges
 
 License
 -------
