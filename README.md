@@ -12,12 +12,12 @@ python3 (for the check script)
 Role Variables
 --------------
 
-hostvars:
+vars:
 
-- pods: list of pods that should run on target host
-- containers: list of containers that should run on target host
+- *pods*: list of pods that should run on target host
+- *containers*: list of containers that should run on target host
 
-e.g. these can be the hostvars for *podman01*
+e.g. these can be the hostvars for host *podman01*
 
     pods:
     - testpod01
