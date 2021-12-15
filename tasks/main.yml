@@ -19,7 +19,7 @@
 - name: ensure check_podman.cfg is installed
   template:
     src: "{{ item }}.j2"
-    dest: /etc/nrpe.d/check_podman.cfg
+    dest: /etc/nrpe.d/{{ item }}
     owner: root
     group: root
     mode: 0644
