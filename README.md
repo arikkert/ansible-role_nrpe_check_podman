@@ -42,9 +42,9 @@ Note that the role is only useful as at least one of these vars is defined.
     - hosts: podman01
       roles:
         - role: role_nrpe
-	  when: containers is defined or pods is defined
+          when: containers is defined or pods is defined
         - role: role_nrpe_check_podman
-	  when: containers is defined or pods is defined
+          when: containers is defined or pods is defined
 
 Note
 -------
