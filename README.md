@@ -38,6 +38,7 @@ Example Playbook
 
 the 2 vars containers and pods are optional and can be defined as host_vars.  
 Note that the role is only useful as at least one of these vars is defined.  
+Else there will be nothing to check.
 
     - hosts: podman01
       roles:
