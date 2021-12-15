@@ -47,6 +47,8 @@ Else there will be nothing to check.
         - role: role_nrpe_check_podman
           when: containers is defined or pods is defined
 
+Script that uses this role : https://github.com/arikkert/ansible-podman
+
 Note
 -------
 
