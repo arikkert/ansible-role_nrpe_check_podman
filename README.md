@@ -38,7 +38,7 @@ Example Playbook
 
 the 2 vars containers and pods are optional and can be defined as host_vars.  
 Note that the role is only useful if at least one of these vars is defined.  
-Else there will be nothing to check.
+Else there will be nothing to check.  
 *arikkert.nrpe_check_podman* will install *arikkert.role_nrpe* as dependency
 
     - hosts: podman01
