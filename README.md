@@ -37,7 +37,7 @@ Example Playbook
 ----------------
 
 the 2 vars containers and pods are optional and can be defined as host_vars.  
-Note that the role is only useful as at least one of these vars is defined.  
+Note that the role is only useful if at least one of these vars is defined.  
 Else there will be nothing to check.
 
     - hosts: podman01
@@ -47,7 +47,7 @@ Else there will be nothing to check.
         - role: role_nrpe_check_podman
           when: containers is defined or pods is defined
 
-Script that uses this role : https://github.com/arikkert/ansible-podman
+Example of script that uses this role : https://github.com/arikkert/ansible-podman
 
 Note
 -------
