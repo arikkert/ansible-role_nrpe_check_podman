@@ -6,7 +6,7 @@ Nagios NRPE for checking running podman pods and containers
 Requirements
 ------------
 
-NRPE is already installed
+NRPE is already installed  
 python3 (for the check script)
 
 Role Variables
