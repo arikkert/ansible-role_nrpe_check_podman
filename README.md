@@ -3,6 +3,8 @@ Role Name
 
 Nagios NRPE for checking running podman pods and containers
 
+Galaxy : yes
+
 Requirements
 ------------
 
