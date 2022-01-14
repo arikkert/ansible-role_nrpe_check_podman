@@ -48,7 +48,7 @@ Else there will be nothing to check.
         - role: arikkert.nrpe_check_podman
           when: containers is defined or pods is defined
 
-Example of script that uses this role : https://github.com/arikkert/ansible-podman
+Example of script that uses this role : https://github.com/arikkert/ansible-podmanhost
 
 Note
 -------
