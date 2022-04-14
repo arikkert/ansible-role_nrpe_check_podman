@@ -27,7 +27,7 @@
     - check_podman.cfg
   notify: nrpe reload
 - name: ensure sudo rules are in place
-  ansible.builtin.:
+  ansible.builtin.copy:
     src: "{{ item }}"
     dest: /etc/sudoers.d/
     mode: '0400'
