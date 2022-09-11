@@ -1,22 +1,22 @@
 ---
 # tasks file for role_nrpe_check_podman
 
-- name: ensure check_podman is installed
+- name: Ensure check_podman is installed
   ansible.builtin.copy:
     src: "{{ item }}"
     dest: /usr/lib64/nagios/plugins/
     mode: '0755'
   loop:
     - check_podman
-- name: show containers that should run on target host
+- name: Show containers that should run on target host
   ansible.builtin.debug:
     msg: host {{ inventory_hostname }} has containers {{ containers }}
   when: containers is defined
-- name: show pods that should run on target host
+- name: Show pods that should run on target host
   ansible.builtin.debug:
     msg: host {{ inventory_hostname }} has pods {{ pods }}
   when: pods is defined
-- name: ensure check_podman.cfg is installed
+- name: Ensure check_podman.cfg is installed
   ansible.builtin.template:
     src: "{{ item }}.j2"
     dest: /etc/nrpe.d/{{ item }}
@@ -26,7 +26,7 @@
   loop:
     - check_podman.cfg
   notify: nrpe reload
-- name: ensure sudo rules are in place
+- name: Ensure sudo rules are in place
   ansible.builtin.copy:
     src: "{{ item }}"
     dest: /etc/sudoers.d/
@@ -34,7 +34,7 @@
     validate: visudo -cf %s
   loop:
     - 10_nrpe
-- name: ensure selinux policy is applied - part 01
+- name: Ensure selinux policy is applied - part 01
   ansible.builtin.seboolean:
     name: nagios_run_sudo
     state: true
