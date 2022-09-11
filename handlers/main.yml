@@ -1,7 +1,7 @@
 ---
 # handlers file for role_nrpe_check_podman
 
-- name: nrpe reload
+- name: Handler nrpe reload
   ansible.builtin.service:
     name: nrpe
     state: reloaded
