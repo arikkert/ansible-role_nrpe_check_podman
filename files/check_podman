@@ -82,6 +82,8 @@ if args.containers:
         else:
             output = output + "container " + arg + " : NOK\n"
             status = CRITICAL
+else:
+    output = output + "No containers to check defined\n"
 
 if args.pods:
     for arg in args.pods:
@@ -90,10 +92,11 @@ if args.pods:
         else:
             output = output + "pod " + arg + " : NOK\n"
             status = CRITICAL
+else:
+    output = output + "No pods to check defined\n"
 
 print (status["name"] + ' - ' + status["message"])
 if args.verbose:
     print (output, end="")
-
 
 sys.exit(status["value"])
