@@ -22,7 +22,7 @@
     dest: /etc/nrpe.d/{{ item }}
     owner: root
     group: root
-    mode: 0644
+    mode: '0644'
   loop:
     - check_podman.cfg
   notify: Handler nrpe reload
@@ -35,7 +35,7 @@
   loop:
     - 10_nrpe
 - name: Ensure selinux policy is applied - part 01
-  ansible.builtin.seboolean:
+  ansible.posix.seboolean:
     name: nagios_run_sudo
     state: true
     persistent: true
