@@ -30,7 +30,7 @@
   ansible.builtin.copy:
     src: "{{ item }}"
     dest: /etc/sudoers.d/
-    mode: '0400'
+    mode: '0440'
     validate: visudo -cf %s
   loop:
     - 10_nrpe
