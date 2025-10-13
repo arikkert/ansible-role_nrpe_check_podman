@@ -3,5 +3,5 @@
 
 - name: Handler nrpe reload
   ansible.builtin.service:
-    name: nrpe
+    name: "{{ service }}"
     state: reloaded

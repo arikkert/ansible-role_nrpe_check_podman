@@ -1,2 +1,0 @@
-# File managed by Ansible
-nrpe ALL=(root) NOPASSWD: /usr/lib64/nagios/plugins/check_podman

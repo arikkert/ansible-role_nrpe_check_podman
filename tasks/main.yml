@@ -4,7 +4,7 @@
 - name: Ensure check_podman is installed
   ansible.builtin.copy:
     src: "{{ item }}"
-    dest: /usr/lib64/nagios/plugins/
+    dest: /usr/{{ libdir }}/nagios/plugins/
     mode: '0755'
   loop:
     - check_podman
@@ -19,7 +19,7 @@
 - name: Ensure check_podman.cfg is installed
   ansible.builtin.template:
     src: "{{ item }}.j2"
-    dest: /etc/nrpe.d/{{ item }}
+    dest: "{{ include_dir }}/{{ item }}"
     owner: root
     group: root
     mode: '0644'
@@ -27,9 +27,9 @@
     - check_podman.cfg
   notify: Handler nrpe reload
 - name: Ensure sudo rules are in place
-  ansible.builtin.copy:
-    src: "{{ item }}"
-    dest: /etc/sudoers.d/
+  ansible.builtin.template:
+    src: "{{ item }}.j2"
+    dest: /etc/sudoers.d/{{ item }}
     mode: '0440'
     validate: visudo -cf %s
   loop:
