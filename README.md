@@ -1,5 +1,5 @@
-Role Name
-=========
+nrpe_check_podman
+=================
 
 Nagios NRPE for checking running podman pods and containers
 
