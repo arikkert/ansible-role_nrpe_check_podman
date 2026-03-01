@@ -4,4 +4,4 @@
 libdir: "{{ 'lib64' if ansible_os_family == 'RedHat' else 'lib' }}"
 include_dir: "{{ '/etc/nrpe.d' if ansible_os_family == 'RedHat' else '/etc/nagios/nrpe.d' }}"
 nrpe_user: "{{ 'nrpe' if ansible_os_family == 'RedHat' else 'nagios' }}"
-service: "{{ 'nrpe' is ansible_os_family == 'RedHat' else 'nagios' }}"
+service: "{{ 'nrpe' if ansible_os_family == 'RedHat' else 'nagios' }}"
